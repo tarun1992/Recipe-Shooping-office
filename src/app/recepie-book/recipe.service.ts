@@ -1,5 +1,5 @@
 import { Recipe } from './recipe.model';
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
@@ -7,7 +7,7 @@ import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
 export class RecipeService {
   constructor(private srList: ShoppingListService) {}
-  recipeDetails = new EventEmitter<Recipe>();
+ // recipeDetails = new EventEmitter<Recipe>();
  private recipes: Recipe[] = [
     new Recipe('French Toast', 'French style toast',
     'https://cdn.pixabay.com/photo/2016/06/15/19/09/food-1459693_960_720.jpg',
