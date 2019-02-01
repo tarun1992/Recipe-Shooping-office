@@ -15,15 +15,18 @@
           <input type="number" id="number" class="form-control"
           name="amount"
           required
+          pattern="^[1-9]+[0-9]*$"
           ngModel
           >
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <button class="btn btn-success" type="submit" [disabled]="!f.form.valid">Add</button>
-          <button class="btn btn-danger">Delete</button>
-          <button class="btn btn-primary">Clear</button>
+          <button class="btn btn-success" type="submit" [disabled]="!f.valid">{{editMode ? 'Update' : 'Add'}}</button>
+          <button class="btn btn-danger" type="button"
+          *ngIf="editMode" (click)="onDelete()"
+          >Delete</button>
+          <button class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
         </div>
       </div>
     </form>

@@ -8,10 +8,18 @@ export class ShoppingListService {
   ];
  // ingredientAdded = new EventEmitter<Ingredient[]>();
     ingredientAdded = new Subject();
+    startEditing = new Subject<number>();
   getIngredientAdded() {
     return this.ingredients.slice();
   }
 
+  getIngredient(index: number) {
+    return this.ingredients[index];
+  }
+  updateIngredient(index: number, newIngredient: Ingredient) {
+    this.ingredients[index] = newIngredient;
+    this.ingredientAdded.next(this.ingredients.slice());
+  }
   add(name, amount) {
     const newIngredient = new Ingredient(name, amount);
     this.ingredients.push(newIngredient);
@@ -22,4 +30,10 @@ export class ShoppingListService {
     this.ingredients.push(...ingredient);
     this.ingredientAdded.next(this.ingredients.slice());
 }
+
+deleteIngredient(index: number) {
+  this.ingredients.splice(index, 1);
+  this.ingredientAdded.next(this.ingredients.slice());
+}
+
 }
